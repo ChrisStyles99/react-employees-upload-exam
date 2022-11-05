@@ -10,7 +10,7 @@ const Pagination = ({ currentPage, total, limit, onPageChange }) => {
   const pages = range(1, pagesCount);
 
   return (
-    <ul>
+    <ul className="flex gap-2">
       {pages.map(page => (
         <PaginationItem key={page} page={page} currentPage={currentPage} onPageChange={onPageChange} />
       ))}

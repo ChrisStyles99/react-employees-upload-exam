@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ModalEmployeeForm from '../components/ModalEmployeeForm';
 import Pagination from '../components/Pagination';
+import TableEmployees from '../components/TableEmployees';
 import { useGetAllEmployeesQuery } from '../store/slices/apiSlice';
 
 const Employees = () => {
@@ -22,34 +23,21 @@ const Employees = () => {
   }
 
   return (
-    <div>
-      {isModalVisible && <ModalEmployeeForm />}
-      <input type="text" value={query} onChange={e => setQuery(e.target.value)} />
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Cumpleaños</th>
-          </tr>
-        </thead>
-        <tbody>
-          {search(list).length < 1 && (
-            <tr>
-              <td colSpan={3}>No hay empleados</td>
-            </tr>
-          )}
-          {search(list).map(item => (
-            <tr key={item.id}>
-              <td>{item.name}</td>
-              <td>{item.last_name}</td>
-              <td>{new Date(item.birthday).toLocaleDateString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="w-4/5 m-auto">
+      {isModalVisible && <ModalEmployeeForm setIsModalVisible={setIsModalVisible} />}
+      <div className="flex justify-center items-center mt-4 gap-3">
+        <label htmlFor="search" className="text-white text-2xl">Buscar:</label>
+        <input type="text" id="search" value={query} onChange={e => setQuery(e.target.value)} className="p-2 text-lg rounded-xl" />
+      </div>
+      <div className="flex justify-center mt-4">
+        <TableEmployees list={list} search={search} />
+      </div>
+      <div className="flex justify-center mt-4">
       {query === '' && <Pagination currentPage={currentPage} total={list?.data?.employees?.length || 0} limit={10} onPageChange={(page) => setCurrentPage(page)} />}
-      <button onClick={() => setIsModalVisible(true)}>Agregar empleado</button>
+      </div>
+      <div className="flex justify-center mt-4">
+        <button onClick={() => setIsModalVisible(true)} className="bg-green-600 p-3 rounded-2xl text-white">Agregar empleado</button>
+      </div>
     </div>
   )
 }

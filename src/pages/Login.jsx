@@ -21,15 +21,15 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Usuario:</label>
+    <div className="flex h-screen justify-center items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col bg-sky-600 p-6 rounded-xl text-white w-96">
+        <label htmlFor="username" className="text-xl mb-4">Usuario:</label>
         <input type="text" id="username" value={username} required onChange={e => setUsername(e.target.value)} onCopy={e => {e.preventDefault(); return false}} 
-        onPaste={e => {e.preventDefault(); return false}} />
-        <label htmlFor="password">Contraseña:</label>
+        onPaste={e => {e.preventDefault(); return false}} className="text-black p-3" />
+        <label htmlFor="password" className="text-xl my-4">Contraseña:</label>
         <input type="password" id="password" value={password} required onChange={e => setPassword(e.target.value)} onCopy={e => {e.preventDefault(); return false}} 
-        onPaste={e => {e.preventDefault(); return false}} />
-        <button type="submit">Iniciar sesión</button>
+        onPaste={e => {e.preventDefault(); return false}} className="text-black p-3" />
+        <button type="submit" className="bg-slate-600 mt-4 text-xl p-3">Iniciar sesión</button>
       </form>
     </div>
   )

@@ -1,3 +1,10 @@
+## Login
+
+Los datos para hacer el login de manera exitosa son
+
+- Usuario: admin1
+- Contraseña: password1
+
 # Para correr el proyecto en modo desarrollo
 
 Primeramente se tiene que crear un archivo .env en la raiz del proyecto con una variable llamada ```VITE_BASE_URL``` con la URL a la cual haremos el llamado.

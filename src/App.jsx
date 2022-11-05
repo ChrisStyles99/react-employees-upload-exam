@@ -14,7 +14,7 @@ function RequireAuth ({ children, redirectTo }) {
 function App() {
   const isAuthenticated = useSelector(state => state.auth.isLoggedIn);
   return (
-    <div className="App">
+    <div className="App bg-zinc-700 min-h-screen">
       <HashRouter>
         <Navbar />
         <Routes>

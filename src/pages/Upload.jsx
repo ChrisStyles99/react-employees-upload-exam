@@ -23,9 +23,9 @@ const Upload = () => {
 
   return (
     <div>
-      <div className="border border-dotted border-black w-1/2 m-auto p-6 flex justify-center items-center my-4" {...getRootProps()}>
+      <div className="border border-dotted border-white w-1/2 m-auto p-6 flex justify-center items-center my-4" {...getRootProps()}>
         <input {...getInputProps()} />
-        <p className="text">
+        <p className="text-lg text-white">
           Arrastra los archivos aqui
         </p>
       </div>
