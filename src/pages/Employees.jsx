@@ -6,7 +6,7 @@ import { useGetAllEmployeesQuery } from '../store/slices/apiSlice';
 
 const Employees = () => {
 
-  const { data: list } = useGetAllEmployeesQuery();
+  const { data: list, isLoading, isError } = useGetAllEmployeesQuery();
 
   const [query, setQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +30,9 @@ const Employees = () => {
         <input type="text" id="search" value={query} onChange={e => setQuery(e.target.value)} className="p-2 text-lg rounded-xl" />
       </div>
       <div className="flex justify-center mt-4">
-        <TableEmployees list={list} search={search} />
+        {isError && <p className="text-red-400 text-lg">Hubo un error al traer a los empleados</p> }
+        {isLoading && <p className="text-white text-lg">Cargando...</p> }
+        {!isLoading && <TableEmployees list={list} search={search} />}
       </div>
       <div className="flex justify-center mt-4">
       {query === '' && <Pagination currentPage={currentPage} total={list?.data?.employees?.length || 0} limit={10} onPageChange={(page) => setCurrentPage(page)} />}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { login } from '../store/slices/authSlice';
 
 const Login = () => {
@@ -13,9 +14,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    if(username !== 'admin1' || password !== 'password1') return;
-    console.log('Iniciada sesion');
+    if(username !== 'admin1' || password !== 'password1') {
+      toast.error('Usuario y/o contraseña incorrecto', {
+        position: 'top-center',
+        theme: 'colored'
+      })
+      return;
+    }
     dispatch(login());
     navigate('/employees');
   }

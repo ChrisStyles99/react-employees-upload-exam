@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
 import { useSaveEmployeeMutation } from '../store/slices/apiSlice';
 import Modal from './Modal'
 
@@ -27,9 +28,17 @@ const ModalEmployeeForm = ({ setIsModalVisible }) => {
         last_name: formData.last_name,
         birthday: formData.birthday.replace(/-/gi, '/')
       });
+      toast.success('Empleado guardado con exito', {
+        position: 'top-center',
+        theme: 'colored'
+      });
       setIsModalVisible(false);
     } catch (error) {
       console.log(error);
+      toast.error('Hubo un error al guardar al empleado', {
+        position: 'top-center',
+        theme: 'colored'
+      });
     } finally {
       setIsLoading(false);
     }
