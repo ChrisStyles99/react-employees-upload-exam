@@ -4,6 +4,7 @@ import Employees from './pages/Employees';
 import Login from './pages/Login';
 import Upload from './pages/Upload';
 import { useSelector } from 'react-redux';
+import Navbar from './components/Navbar';
 
 function RequireAuth ({ children, redirectTo }) {
   const isAuthenticated = useSelector(state => state.auth.isLoggedIn);
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <HashRouter>
+        <Navbar />
         <Routes>
           <Route element={<Login />} path="/login" />
           <Route element={

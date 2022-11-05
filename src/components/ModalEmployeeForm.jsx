@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { BASE_URL } from '../config';
+import { useSaveEmployeeMutation } from '../store/slices/apiSlice';
 import Modal from './Modal'
 
 const ModalEmployeeForm = () => {
+
+  const [saveEmployee] = useSaveEmployeeMutation();
 
   const [formData, setFormData] = useState({
     name: '', last_name: '', birthday: ''
@@ -17,22 +19,11 @@ const ModalEmployeeForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(formData);
-    console.log(formData.birthday.replace(/-/gi, '/'));
-    console.log(new Date(formData.birthday.replace(/-/gi, '/')).getTime());
-    const result = await fetch(BASE_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: formData.name,
-        last_name: formData.last_name,
-        birthday: formData.birthday.replace(/-/gi, '/')
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    });
-    const data = await result.json();
-    console.log(data);
+    await saveEmployee({
+          name: formData.name,
+          last_name: formData.last_name,
+          birthday: formData.birthday.replace(/-/gi, '/')
+        })
   }
 
   return (

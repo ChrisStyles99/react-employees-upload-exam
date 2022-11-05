@@ -6,7 +6,6 @@ const range = (start, end) => {
 }
 
 const Pagination = ({ currentPage, total, limit, onPageChange }) => {
-
   const pagesCount = Math.ceil(total / limit);
   const pages = range(1, pagesCount);
 
